@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dhakalbivek.com.np</title>
+    <meta name="description" content="Portfolio for a beginner IT student" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-content">
+        <div class="logo">My Portfolio</div>
+        <nav class="desktop-nav">
+          <a href="#about"><button class="nav-link" data-section="about">About</button></a>
+          <a href="#projects"><button href="#projects" class="nav-link" data-section="projects">Projects</button></a>
+          <a href="#skills"><button class="nav-link" data-section="skills">Skills</button></a>
+          <a href="#contact"><button class="nav-link contact-btn" data-section="contact">Contact Me</button></a>
+        </nav>
+        <button class="mobile-menu-btn">
+          <i class="fa-solid fa-bars menu-icon"></i>
+          <i class="fa-solid fa-xmark close-icon hidden"></i>
+        </button>
+      </div>
+      
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav hidden">
+        <div class="container">
+          <button class="nav-link" data-section="about">About</button>
+          <button class="nav-link" data-section="projects">Projects</button>
+          <button class="nav-link" data-section="skills">Skills</button>
+          <button class="nav-link contact-btn" data-section="contact">Contact Me</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1><span class="highlight">Hello, I'm</span> Bibek</h1>
+            <p>A passionate IT student exploring the world of technology and software development.</p>
+            <div class="hero-buttons">
+              <a href="#contact"><button class="btn primary" data-section="contact">Contact Me <i class="fa-solid fa-arrow-right"></i></button></a>
+              <button class="btn outline">View Resume</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="about">
+        <div class="container">
+          <div class="section-header">
+            <h2>About Me</h2>
+            <div class="section-divider"></div>
+          </div>
+          
+          <div class="about-content">
+            <p class="about-text">
+              I'm a dedicated IT student with a passion for technology and problem-solving. Currently pursuing my Bachelor's degree in Computer Science, I am eager to apply my technical skills and knowledge in a professional environment. I enjoy learning new technologies and building projects that solve real-world problems.
+            </p>
+
+            <div class="cards">
+              <div class="card">
+                <div class="card-icon">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <h3>Personal</h3>
+                <p>Born and raised in Nepal, I have always been fascinated by computers and technology. In my free time, I enjoy hiking and playing chess.</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <i class="fa-solid fa-book"></i>
+                </div>
+                <h3>Education</h3>
+                <p>Bachelor of Science in Computer Science, Taylors University (2024-Present)</p>
+              </div>
+
+              <div class="card">
+                <div class="card-icon">
+                  <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h3>Experience</h3>
+                <p>Worked on Basic Wed Devloping and CNN Projects</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="projects">
+        <div class="container">
+          <div class="section-header">
+            <h2>My Projects</h2>
+            <div class="section-divider"></div>
+            <p>Here are some projects I've worked on to apply my skills and knowledge.</p>
+          </div>
+          
+          <div class="project-cards">
+            <div class="project-card">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" alt="Student Management System">
+              </div>
+              <div class="project-details">
+                <h3>Food Delivery System prototype(Foodie fly)</h3>
+                <p>A web application that focused on deliver food based on user's demand as soon as possiable.</p>
+                <div class="project-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">PHP</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JS</span>
+                  <span class="tag">SQL</span>
+                </div>
+                <div class="project-links">
+                  <button class="btn small outline"><i class="fab fa-github"></i> Code</button>
+                  <button class="btn small"><i class="fa-solid fa-link"></i> Demo</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="project-card">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Budget Tracker">
+              </div>
+              <div class="project-details">
+                <h3>Personal Budget Tracker
+                </h3>
+                <p>A mobile-responsive app that helps users track their income and expenses.</p>
+                <div class="project-tags">
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">React</span>
+                  <span class="tag">Firebase</span>
+                </div>
+                <div class="project-links">
+                  <button class="btn small outline"><i class="fab fa-github"></i> Code</button>
+                  <button class="btn small"><i class="fa-solid fa-link"></i> Demo</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="project-card">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" alt="Weather Dashboard">
+              </div>
+              <div class="project-details">
+                <h3>Weather Dashboard</h3>
+                <p>A weather application that fetches real-time data from a weather API.</p>
+                <div class="project-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">API</span>
+                </div>
+                <div class="project-links">
+                  <button class="btn small outline"><i class="fab fa-github"></i> Code</button>
+                  <button class="btn small"><i class="fa-solid fa-link"></i> Demo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills">
+        <div class="container">
+          <div class="section-header">
+            <h2>My Skills</h2>
+            <div class="section-divider"></div>
+            <p>Here are the technologies and skills I've been working with.</p>
+          </div>
+          
+          <div class="skills-content">
+            <div class="skills-column">
+              <h3>Programming Languages</h3>
+              <div class="skill-bars">
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">HTML & CSS</span>
+                    <span class="skill-percentage">85%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">JavaScript</span>
+                    <span class="skill-percentage">70%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 70%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Python</span>
+                    <span class="skill-percentage">40%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 65%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Java</span>
+                    <span class="skill-percentage">80%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 60%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">SQL</span>
+                    <span class="skill-percentage">70%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="skills-column">
+              <h3>Other Skills</h3>
+              <div class="skill-bars">
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Git & GitHub</span>
+                    <span class="skill-percentage">70%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 70%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Agile Methodology</span>
+                    <span class="skill-percentage">20%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 60%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">UI/UX Design</span>
+                    <span class="skill-percentage">40%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 55%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Problem Solving</span>
+                    <span class="skill-percentage">80%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Communication</span>
+                    <span class="skill-percentage">90%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress" style="width: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="section-header">
+            <h2>Get In Touch</h2>
+            <div class="section-divider"></div>
+            <p>Have a question or want to work together? Feel free to contact me.</p>
+          </div>
+          
+          <div class="contact-content">
+            <div class="contact-form">
+              <h3>Send me a message</h3>
+              <form id="contactForm">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="Your email" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn full-width">Send Message</button>
+              </form>
+            </div>
+            
+            <div class="contact-info">
+              <div class="info-card">
+                <h3>Contact Information</h3>
+                <div class="info-item">
+                  <i class="fa-solid fa-envelope"></i>
+                  <div>
+                    <p class="info-label">Email</p>
+                    <p>bibekdkl1122@gmail.com</p>
+                  </div>
+                </div>
+                
+                <div class="info-item">
+                  <i class="fa-solid fa-comment"></i>
+                  <div>
+                    <p class="info-label">Discord</p>
+                    <p>विवेक#bibek_dkl</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="info-card">
+                <h3>Social Media</h3>
+                <a href="https://github.com/BibekDkl" class="social-link">
+                  <i class="fab fa-github"></i>
+                  <span>GitHub</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/bibek-dhakal-7bb62a283/" class="social-link">
+                  <i class="fab fa-linkedin"></i>
+                  <span>LinkedIn</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/bibek-dhakal-7bb62a283/" class="social-link">
+                    <i class="fab fa-fackbook"></i>
+                    <span>FaceBook</span>
+                  </a>
+                
+                <a href="https://www.linkedin.com/in/bibek-dhakal-7bb62a283/" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">My Portfolio</div>
+          <div class="footer-copyright">
+            © <span id="year"></span> Bibek Dhakal. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Message -->
+    <div id="toast" class="toast">
+      <div class="toast-content">
+        <div class="toast-title">Success!</div>
+        <div class="toast-message">Your message has been sent.</div>
+      </div>
+      <button class="toast-close">&times;</button>
+    </div>
+  </body>
+</html>

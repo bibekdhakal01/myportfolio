@@ -438,16 +438,25 @@ def create_selector(strategy_name: str, **kwargs) -> SelectionStrategy:
     Returns:
         SelectionStrategy instance
     """
-    strategy_map = {
-        'tournament': TournamentSelection,
-        'roulette': RouletteWheelSelection,
-        'rank': RankBasedSelection,
-        'sus': StochasticUniversalSampling,
-        'multi_objective': MultiObjectiveSelection,
-        'adaptive': AdaptiveSelection
-    }
-    
-    if strategy_name not in strategy_map:
+    if strategy_name == 'tournament':
+        return TournamentSelection(**kwargs)
+    elif strategy_name == 'roulette':
+        # Filter kwargs for RouletteWheelSelection
+        valid_kwargs = {k: v for k, v in kwargs.items() if k in ['scaling_factor']}
+        return RouletteWheelSelection(**valid_kwargs)
+    elif strategy_name == 'rank':
+        # Filter kwargs for RankBasedSelection
+        valid_kwargs = {k: v for k, v in kwargs.items() if k in ['selection_pressure']}
+        return RankBasedSelection(**valid_kwargs)
+    elif strategy_name == 'sus':
+        return StochasticUniversalSampling()
+    elif strategy_name == 'multi_objective':
+        # Filter kwargs for MultiObjectiveSelection
+        valid_kwargs = {k: v for k, v in kwargs.items() if k in ['objectives']}
+        return MultiObjectiveSelection(**valid_kwargs)
+    elif strategy_name == 'adaptive':
+        # Filter kwargs for AdaptiveSelection
+        valid_kwargs = {k: v for k, v in kwargs.items() if k in ['strategies']}
+        return AdaptiveSelection(**valid_kwargs)
+    else:
         raise ValueError(f"Unknown selection strategy: {strategy_name}")
-    
-    return strategy_map[strategy_name](**kwargs)

@@ -1,399 +1,797 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dhakalbivek.com.np</title>
-    <meta name="description" content="My Portfolio" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header" id="header">
-      <div class="container header-content">
-        <div class="logo">My Portfolio</div>
-        <nav class="desktop-nav">
-          <a href="#about"><button class="nav-link" data-section="about">About</button></a>
-          <a href="#projects"><button href="#projects" class="nav-link" data-section="projects">Projects</button></a>
-          <a href="#skills"><button class="nav-link" data-section="skills">Skills</button></a>
-          <a href="#contact"><button class="nav-link contact-btn" data-section="contact">Contact Me</button></a>
-        </nav>
-        <button class="mobile-menu-btn">
-          <i class="fa-solid fa-bars menu-icon"></i>
-          <i class="fa-solid fa-xmark close-icon hidden"></i>
-        </button>
-      </div>
-      
-      <!-- Mobile Navigation -->
-      <div class="mobile-nav hidden">
-        <div class="container">
-          <button class="nav-link" data-section="about">About</button>
-          <button class="nav-link" data-section="projects">Projects</button>
-          <button class="nav-link" data-section="skills">Skills</button>
-          <button class="nav-link contact-btn" data-section="contact">Contact Me</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibek Dhakal - Portfolio</title>
+    <meta name="description" content="Passionate IT student and full-stack developer from Nepal. Specializing in web development, machine learning, and modern technologies. View my projects and let's build something amazing together.">
+    <meta name="author" content="Bibek Dhakal">
+    <meta name="keywords" content="Bibek Dhakal, full stack developer, web developer, Nepal developer, computer science student, React developer, Python developer, portfolio">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Bibek Dhakal - Portfolio">
+    <meta property="og:description" content="Passionate IT student and full-stack developer from Nepal. Specializing in web development, machine learning, and modern technologies.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/lovable-uploads/1b779239-ee7c-4fbc-ac9e-003be87aee68.png">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bibek Dhakal - Full Stack Developer Portfolio">
+    <meta name="twitter:description" content="Passionate IT student and full-stack developer from Nepal. Specializing in web development, machine learning, and modern technologies.">
+    <meta name="twitter:image" content="/lovable-uploads/1b779239-ee7c-4fbc-ac9e-003be87aee68.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bibekdhakal.dev">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particles Background -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="scrollToTop()">Portfolio</div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="nav-desktop">
+                <a href="#about" class="nav-link" onclick="scrollToSection('about')">About</a>
+                <a href="#projects" class="nav-link" onclick="scrollToSection('projects')">Projects</a>
+                <a href="#skills" class="nav-link" onclick="scrollToSection('skills')">Skills</a>
+                <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">Contact</a>
+                <button class="btn btn-cyber btn-sm" onclick="scrollToSection('contact')">Hire Me</button>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars" id="menu-icon"></i>
+                <i class="fas fa-times hidden" id="close-icon"></i>
+            </button>
         </div>
-      </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile hidden" id="mobile-nav">
+            <a href="#about" class="nav-link" onclick="scrollToSection('about')">About</a>
+            <a href="#projects" class="nav-link" onclick="scrollToSection('projects')">Projects</a>
+            <a href="#skills" class="nav-link" onclick="scrollToSection('skills')">Skills</a>
+            <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">Contact</a>
+            <button class="btn btn-cyber btn-sm" onclick="scrollToSection('contact')">Hire Me</button>
+        </nav>
     </header>
 
-    <main>
-      <!-- Hero Section -->
-      <section class="hero" id="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="cyber-grid"></div>
+        
+        <!-- Floating Shapes -->
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        
         <div class="container">
-          <div class="hero-content">
-            <h1><span class="highlight">Hello, I'm</span> Bibek</h1>
-            <p>A passionate IT student exploring the world of technology and software development.</p>
-            <div class="hero-buttons">
-              <a href="#contact"><button class="btn primary" data-section="contact">Contact Me <i class="fa-solid fa-arrow-right"></i></button></a>
-              <a href="https://drive.google.com/file/d/1SDmCsl8czD905y4m9AJVyez6bcxlUNE9/view?usp=sharing"><button class="btn outline">View Resume</button></a>
+            <div class="hero-content">
+                <!-- <div class="hero-badge animate-fade-in-up">Portfolio 2024</div> -->
+                <h1 class="hero-title animate-fade-in-up">
+                    <span class="text-gradient-primary">Hello, I'm</span><br>
+                    <span class="animate-float">Bibek</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-in-up">
+                    A passionate <span class="text-gradient-accent">IT student</span> exploring 
+                    the world of technology and software development with cutting-edge solutions.
+                </p>
+                <div class="hero-buttons animate-fade-in-up">
+                    <button class="btn btn-cyber btn-hero" onclick="scrollToSection('contact')">
+                        Contact Me <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn btn-neon btn-hero" onclick="window.open('https:drive.google.com/file/d/1SDmCsl8czD905y4m9AJVyez6bcxlUNE9/view?usp=sharing', '_blank')">
+                        <i class="fas fa-download"></i> View Resume
+                    </button>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="hero-stats animate-fade-in-up">
+                    <div class="stat-card glass-card">
+                        <div class="stat-number text-gradient-primary">3+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-number text-gradient-accent">2024</div>
+                        <div class="stat-label">Graduate</div>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <div class="stat-number text-gradient-primary">BSc</div>
+                        <div class="stat-label">Computer Science</div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </section>
-
-      <!-- About Section -->
-      <section id="about" class="about">
-        <div class="container">
-          <div class="section-header">
-            <h2>About Me</h2>
-            <div class="section-divider"></div>
-          </div>
-          
-          <div class="about-content">
-            <p class="about-text">
-              I'm a dedicated IT student with a passion for technology and problem-solving. Currently pursuing my Bachelor's degree in Computer Science, I am eager to apply my technical skills and knowledge in a professional environment. I enjoy learning new technologies and building projects that solve real-world problems.
-            </p>
-
-            <div class="cards">
-              <div class="card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-user"></i>
-                </div>
-                <h3>Personal</h3>
-                <p>Born and raised in Nepal, I have always been fascinated by computers and technology. In my free time, I enjoy hiking and playing chess.</p>
-              </div>
-
-              <div class="card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-book"></i>
-                </div>
-                <h3>Education</h3>
-                <p>Bachelor of Science in Computer Science, Taylors University (2024-Present)</p>
-              </div>
-
-              <div class="card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-briefcase"></i>
-                </div>
-                <h3>Experience</h3>
-                <p>Worked on Basic Wed Devloping and CNN Projects</p>
-              </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Projects Section -->
-      <section id="projects" class="projects">
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-bg cyber-grid"></div>
         <div class="container">
-          <div class="section-header">
-            <h2>My Projects</h2>
-            <div class="section-divider"></div>
-            <p>Here are some projects I've worked on to apply my skills and knowledge.</p>
-          </div>
-          
-          <div class="project-cards">
-            <div class="project-card">
-              <div class="project-image">
-                <img src="Images/Food Delivery.jpeg" alt="Student Management System">
-              </div>
-              <div class="project-details">
-                <h3>Food Delivery System prototype(Foodie fly)</h3>
-                <p>A web application that focused on deliver food based on user's demand as soon as possiable.</p>
-                <div class="project-tags">
-                  <span class="tag">HTML</span>
-                  <span class="tag">PHP</span>
-                  <span class="tag">CSS</span>
-                  <span class="tag">JS</span>
-                  <span class="tag">SQL</span>
-                </div>
-                <div class="project-links">
-                  <a href="https://github.com/BibekDkl/Hamro_Hotel"><button class="btn small outline"><i class="fab fa-github"></i> Code</button></a>
-                  <button class="btn small"><i class="fa-solid fa-link"></i> Demo</button>
-                </div>
-              </div>
+            <div class="section-header">
+                <h2 class="section-title">About <span class="text-gradient-primary">Me</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    I'm a dedicated IT student with a passion for technology and problem-solving. 
+                    Currently pursuing my Bachelor's degree in Computer Science, I am eager to apply 
+                    my technical skills and knowledge in a professional environment.
+                </p>
             </div>
             
-            <div class="project-card">
-              <div class="project-image">
-                <img src="Images/Donation.jpeg" alt="Budget Tracker">
-              </div>
-              <div class="project-details">
-                <h3>Donation management system</h3>
-                <p>A console based donation management system which helps to track and update donation data.</p>
-                <div class="project-tags">
-                  <span class="tag">C++</span>
-                  <!-- <span class="tag">React</span>
-                  <span class="tag">Firebase</span> -->
+            <!-- Profile Image -->
+            <div class="profile-container">
+                <div class="profile-glow"></div>
+                <div class="profile-image">
+                    <img src="Images/Profile Picture.jpg" alt="Bibek Dhakal">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                    </div>
                 </div>
-                <div class="project-links">
-                  <a href = "https://github.com/BibekDkl/Donation-Management-System"><button class="btn small outline"><i class="fab fa-github"></i> Code</button></a>
-                  <button class="btn small"><i class="fa-solid fa-link"></i> Demo</button>
-                </div>
-              </div>
             </div>
             
-            <div class="project-card">
-              <div class="project-image">
-                <img src="Images/Virtual_mouse.webp" alt="Weather Dashboard">
-              </div>
-              <div class="project-details">
-                <h3>Virtual Mouse</h3>
-                <p>A virtual mouse application from where we can easily control our device using CNN.</p>
-                <div class="project-tags">
-                  <span class="tag">Python</span>
-                  <span class="tag">CNN</span>
-                  <span class="tag">Dataset</span>
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-item glass-card hover-glow">
+                    <i class="fas fa-book icon-primary"></i>
+                    <div class="stat-value text-gradient-primary">4+</div>
+                    <div class="stat-text">Years of Study</div>
                 </div>
-                <div class="project-links">
-                  <a href="https://github.com/BibekDkl/Virtual_mouse_using_CNN"><button class="btn small outline" ><i class="fab fa-github"></i>Codes</button></a>
-                  <button class="btn small"><i class="fa-solid fa-link"></i> Demo</button>
+                <div class="stat-item glass-card hover-glow">
+                    <i class="fas fa-code icon-accent"></i>
+                    <div class="stat-value text-gradient-accent">6+</div>
+                    <div class="stat-text">Programming Languages</div>
                 </div>
-              </div>
+                <div class="stat-item glass-card hover-glow">
+                    <i class="fas fa-trophy icon-primary"></i>
+                    <div class="stat-value text-gradient-primary">10+</div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                <div class="stat-item glass-card hover-glow">
+                    <i class="fas fa-globe icon-accent"></i>
+                    <div class="stat-value text-gradient-accent">15+</div>
+                    <div class="stat-text">Technologies</div>
+                </div>
             </div>
-          </div>
+            
+            <!-- About Cards -->
+            <div class="about-cards">
+                <div class="about-card glass-card hover-glow">
+                    <div class="card-icon bg-primary">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="card-title text-gradient-accent">Personal</h3>
+                    <p class="card-text">
+                        Born and raised in Nepal, I have always been fascinated by computers and technology. 
+                        In my free time, I enjoy hiking and playing chess.
+                    </p>
+                </div>
+                
+                <div class="about-card glass-card hover-glow">
+                    <div class="card-icon bg-accent">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="card-title text-gradient-primary">Education</h3>
+                    <p class="card-text">
+                        Bachelor of Science in Computer Science, Taylors University (2024-Present). 
+                        Currently mastering advanced programming concepts and software engineering principles.
+                    </p>
+                </div>
+                
+                <div class="about-card glass-card hover-glow">
+                    <div class="card-icon bg-primary">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="card-title text-gradient-accent">Experience</h3>
+                    <p class="card-text">
+                        Worked on Basic Web Development and CNN Projects. Passionate about creating 
+                        innovative solutions that solve real-world problems.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Skills Preview -->
+            <div class="skills-preview">
+                <h3 class="text-gradient-primary">Core Technologies</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">HTML/CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">React</span>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Skills Section -->
-      <section id="skills" class="skills">
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
         <div class="container">
-          <div class="section-header">
-            <h2>My Skills</h2>
-            <div class="section-divider"></div>
-            <p>Here are the technologies and skills I've been working with.</p>
-          </div>
-          
-          <div class="skills-content">
-            <div class="skills-column">
-              <h3>Programming Languages</h3>
-              <div class="skill-bars">
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">HTML & CSS</span>
-                    <span class="skill-percentage">85%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 85%"></div>
-                  </div>
-                </div>
-                
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">JavaScript</span>
-                    <span class="skill-percentage">70%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 70%"></div>
-                  </div>
-                </div>
-                
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">Python</span>
-                    <span class="skill-percentage">40%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 65%"></div>
-                  </div>
-                </div>
-                
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">Java</span>
-                    <span class="skill-percentage">80%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 60%"></div>
-                  </div>
-                </div>
-                
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">SQL</span>
-                    <span class="skill-percentage">70%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 75%"></div>
-                  </div>
-                </div>
-              </div>
+            <div class="section-header">
+                <h2 class="section-title">My <span class="text-gradient-primary">Projects</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    Here are some projects I've worked on to apply my skills and knowledge in real-world scenarios.
+                </p>
             </div>
             
-            <div class="skills-column">
-              <h3>Other Skills</h3>
-              <div class="skill-bars">
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">Git & GitHub</span>
-                    <span class="skill-percentage">70%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 70%"></div>
-                  </div>
+            <div class="project-carousel">
+                <div class="carousel-container">
+                    <!-- Project 1 -->
+                    <div class="project-slide active" data-project="0">
+                        <div class="project-content">
+                            <div class="project-image">
+                                <div class="project-glow"></div>
+                                <img src="Images/Food Delivery.jpeg" alt="Food Delivery System">
+                                <div class="featured-badge">Featured</div>
+                            </div>
+                            <div class="project-details">
+                                <h3 class="project-title text-gradient-accent">Food Delivery System (Foodie Fly)</h3>
+                                <p class="project-description">
+                                    A comprehensive web application focused on delivering food based on user's demand as soon as possible. 
+                                    Features include real-time ordering, payment integration, and delivery tracking.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag">HTML</span>
+                                    <span class="tag">PHP</span>
+                                    <span class="tag">CSS</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">SQL</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-neon" onclick="window.open('https://github.com/BibekDkl/Hamro_Hotel', '_blank')">
+                                        <i class="fab fa-github"></i> View Code
+                                    </button>
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-slide" data-project="1">
+                        <div class="project-content">
+                            <div class="project-image">
+                                <div class="project-glow"></div>
+                                <img src="Images/Donation.jpeg" alt="Donation Management System">
+                            </div>
+                            <div class="project-details">
+                                <h3 class="project-title text-gradient-accent">Donation Management System</h3>
+                                <p class="project-description">
+                                    A console-based donation management system which helps to track and update donation data efficiently. 
+                                    Built with modern C++ practices and data structures.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag">C++</span>
+                                    <span class="tag">Data Structures</span>
+                                    <span class="tag">OOP</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-neon" onclick="window.open('https://github.com/BibekDkl/Donation-Management-System', '_blank')">
+                                        <i class="fab fa-github"></i> View Code
+                                    </button>
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="project-slide" data-project="2">
+                        <div class="project-content">
+                            <div class="project-image">
+                                <div class="project-glow"></div>
+                                <img src="Images/Virtual_mouse.webp" alt="Virtual Mouse with CNN">
+                                <div class="featured-badge">Featured</div>
+                            </div>
+                            <div class="project-details">
+                                <h3 class="project-title text-gradient-accent">Virtual Mouse with CNN</h3>
+                                <p class="project-description">
+                                    An innovative virtual mouse application that allows users to control their device using computer vision and CNN. 
+                                    Features gesture recognition and real-time tracking.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">CNN</span>
+                                    <span class="tag">OpenCV</span>
+                                    <span class="tag">Machine Learning</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-neon" onclick="window.open('https://github.com/BibekDkl/Virtual_mouse_using_CNN', '_blank')">
+                                        <i class="fab fa-github"></i> View Code
+                                    </button>
+                                    <button class="btn btn-outline">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">Agile Methodology</span>
-                    <span class="skill-percentage">20%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 60%"></div>
-                  </div>
+                <!-- Navigation Controls -->
+                <div class="carousel-nav">
+                    <button class="nav-btn prev-btn" onclick="previousProject()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="carousel-dots">
+                        <button class="dot active" onclick="goToProject(0)"></button>
+                        <button class="dot" onclick="goToProject(1)"></button>
+                        <button class="dot" onclick="goToProject(2)"></button>
+                    </div>
+                    
+                    <button class="nav-btn next-btn" onclick="nextProject()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
                 
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">UI/UX Design</span>
-                    <span class="skill-percentage">40%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 55%"></div>
-                  </div>
+                <div class="project-counter">
+                    <span id="current-project">1</span> of <span id="total-projects">3</span>
                 </div>
-                
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">Problem Solving</span>
-                    <span class="skill-percentage">80%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 80%"></div>
-                  </div>
-                </div>
-                
-                <div class="skill-item">
-                  <div class="skill-info">
-                    <span class="skill-name">Communication</span>
-                    <span class="skill-percentage">90%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress" style="width: 85%"></div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="contact">
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="section-bg cyber-grid"></div>
+        <div class="skills-glow-1"></div>
+        <div class="skills-glow-2"></div>
+        
         <div class="container">
-          <div class="section-header">
-            <h2>Get In Touch</h2>
-            <div class="section-divider"></div>
-            <p>Have a question or want to work together? Feel free to contact me.</p>
-          </div>
-          
-          <div class="contact-content">
-            <div class="contact-form">
-              <h3>Send me a message</h3>
-              <form id="contactForm">
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" name="name" placeholder="Your name" required>
-                </div>
-                
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" placeholder="Your email" required>
-                </div>
-                
-                <div class="form-group">
-                  <label for="subject">Subject</label>
-                  <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                </div>
-                
-                <div class="form-group">
-                  <label for="message">Message</label>
-                  <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn full-width">Send Message</button>
-              </form>
+            <div class="section-header">
+                <h2 class="section-title">My <span class="text-gradient-primary">Skills</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    Here are the technologies and skills I've been working with to build amazing projects.
+                </p>
             </div>
             
-            <div class="contact-info">
-              <div class="info-card">
-                <h3>Contact Information</h3>
-                <div class="info-item">
-                  <i class="fa-solid fa-envelope"></i>
-                  <div>
-                    <p class="info-label">Email</p>
-                    <p>bibekdkl1122@gmail.com</p>
-                  </div>
+            <!-- Technical Skills -->
+            <div class="skills-grid">
+                <!-- Programming Languages -->
+                <div class="skill-category glass-card hover-glow">
+                    <div class="category-header">
+                        <div class="category-icon bg-primary">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="category-title text-gradient-accent">Programming Languages</h3>
+                    </div>
+                    <div class="skill-bars">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML & CSS</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-accent" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Java</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-accent" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">C++</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="info-item">
-                  <i class="fa-solid fa-comment"></i>
-                  <div>
-                    <p class="info-label">Discord</p>
-                    <p>विवेक#bibek_dkl</p>
-                  </div>
+                <!-- Web Technologies -->
+                <div class="skill-category glass-card hover-glow">
+                    <div class="category-header">
+                        <div class="category-icon bg-accent">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="category-title text-gradient-primary">Web Technologies</h3>
+                    </div>
+                    <div class="skill-bars">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">React</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-accent" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">PHP</span>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Node.js</span>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-accent" data-width="60"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">RESTful APIs</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Responsive Design</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-accent" data-width="85"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              
-              <div class="info-card">
-                <h3>Social Media</h3>
-                <a href="https://github.com/BibekDkl" class="social-link">
-                  <i class="fab fa-github"></i>
-                  <span>GitHub</span>
-                </a>
                 
-                <a href="https://www.linkedin.com/in/bibek-dhakal-7bb62a283/" class="social-link">
-                  <i class="fab fa-linkedin"></i>
-                  <span>LinkedIn</span>
-                </a>
-                
-                <a href="https://www.facebook.com/bibek.dhakal.379113" class="social-link">
-                    <i class="fab fa-facebook"></i>
-                    <span>FaceBook</span>
-                  </a>
-                
-                <a href="https://www.instagram.com/dhakal_bibek_1/" class="social-link">
-                    <i class="fab fa-instagram"></i>
-                    <span>Instagram</span>
-                  </a>
-              </div>
+                <!-- Database & Tools -->
+                <div class="skill-category glass-card hover-glow">
+                    <div class="category-header">
+                        <div class="category-icon bg-primary">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="category-title text-gradient-accent">Database & Tools</h3>
+                    </div>
+                    <div class="skill-bars">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">SQL</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Git & GitHub</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-accent" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">MySQL</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">MongoDB</span>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress skill-accent" data-width="60"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Firebase</span>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            
+            <!-- Soft Skills -->
+            <div class="soft-skills">
+                <h3 class="text-gradient-accent">Soft Skills & Abilities</h3>
+                <div class="soft-skills-grid">
+                    <div class="soft-skill glass-card hover-glow">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="soft-skill-name text-gradient-primary">Problem Solving</h4>
+                        <div class="soft-skill-bar">
+                            <div class="soft-skill-progress" data-width="90"></div>
+                        </div>
+                        <span class="soft-skill-percentage">90%</span>
+                    </div>
+                    
+                    <div class="soft-skill glass-card hover-glow">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="soft-skill-name text-gradient-accent">Communication</h4>
+                        <div class="soft-skill-bar">
+                            <div class="soft-skill-progress skill-accent" data-width="85"></div>
+                        </div>
+                        <span class="soft-skill-percentage">85%</span>
+                    </div>
+                    
+                    <div class="soft-skill glass-card hover-glow">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4 class="soft-skill-name text-gradient-primary">Adaptability</h4>
+                        <div class="soft-skill-bar">
+                            <div class="soft-skill-progress" data-width="80"></div>
+                        </div>
+                        <span class="soft-skill-percentage">80%</span>
+                    </div>
+                    
+                    <div class="soft-skill glass-card hover-glow">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 class="soft-skill-name text-gradient-accent">Critical Thinking</h4>
+                        <div class="soft-skill-bar">
+                            <div class="soft-skill-progress skill-accent" data-width="85"></div>
+                        </div>
+                        <span class="soft-skill-percentage">85%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Always Learning -->
+            <div class="learning-section glass-card">
+                <h4 class="text-gradient-primary">Always Learning</h4>
+                <p>
+                    I'm constantly expanding my skillset and staying up-to-date with the latest technologies. 
+                    Currently exploring machine learning, cloud computing, and advanced web development frameworks 
+                    to build more sophisticated and scalable applications.
+                </p>
+            </div>
         </div>
-      </section>
-    </main>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-bg cyber-grid"></div>
+        <div class="contact-glow"></div>
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In <span class="text-gradient-primary">Touch</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    Have a question or want to work together? I'd love to hear from you. 
+                    Let's create something amazing!
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <div class="contact-form glass-card hover-glow">
+                        <h3 class="form-title text-gradient-accent">Send me a message</h3>
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" placeholder="Tell me about your project or just say hello!" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-cyber btn-full" id="submitBtn">
+                                <span id="submitText">Send Message</span>
+                                <i class="fas fa-paper-plane" id="submitIcon"></i>
+                                <div class="loading-spinner hidden" id="loadingSpinner"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info-container">
+                    <!-- Contact Information -->
+                    <div class="contact-info glass-card hover-glow">
+                        <h3 class="info-title text-gradient-accent">Contact Information</h3>
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Email</p>
+                                    <p class="info-value">bibekdkl1122@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Discord</p>
+                                    <p class="info-value">विवेक#bibek_dkl</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="info-content">
+                                    <p class="info-label">Location</p>
+                                    <p class="info-value">Nepal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="social-media glass-card hover-glow">
+                        <h3 class="social-title text-gradient-accent">Let's Connect</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/BibekDkl" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/bibek-dhakal-7bb62a283/" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://www.facebook.com/bibek.dhakal.379113" target="_blank" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://www.instagram.com/dhakal_bibek_1/" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Availability Status -->
+                    <div class="availability-status glass-card">
+                        <div class="status-header">
+                            <div class="status-dot"></div>
+                            <span class="status-text">Available for opportunities</span>
+                        </div>
+                        <p class="status-description">
+                            Currently seeking internships and entry-level positions in software development.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-         <a  href="#hero"><div class="footer-logo">My Portfolio</div></a>
-          <div class="footer-copyright">
-            © <span id="year"></span> Bibek Dhakal. All rights reserved.
-          </div>
+        <div class="footer-bg cyber-grid"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <h3 class="footer-logo text-gradient-primary">Portfolio</h3>
+                    <p class="footer-tagline">Building the future, one line of code at a time.</p>
+                </div>
+                
+                <nav class="footer-nav">
+                    <a href="#about" onclick="scrollToSection('about')">About</a>
+                    <a href="#projects" onclick="scrollToSection('projects')">Projects</a>
+                    <a href="#skills" onclick="scrollToSection('skills')">Skills</a>
+                    <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+                </nav>
+                
+                <div class="footer-social">
+                    <a href="https://github.com/BibekDkl" target="_blank" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bibek-dhakal-7bb62a283/" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.facebook.com/bibek.dhakal.379113" target="_blank" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/dhakal_bibek_1/" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                
+                <div class="footer-divider"></div>
+                
+                <div class="footer-bottom">
+                    <p class="copyright">
+                        © <span id="current-year">2024</span> Bibek Dhakal. Made with 
+                        <i class="fas fa-heart text-red"></i> and lots of coffee.
+                    </p>
+                    <button class="back-to-top" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
 
-    <!-- Toast Message -->
-    <div id="toast" class="toast">
-      <div class="toast-content">
-        <div class="toast-title">Success!</div>
-        <div class="toast-message">Your message has been sent.</div>
-      </div>
-      <button class="toast-close">&times;</button>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <div class="toast-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="toast-text">
+                <div class="toast-title">Success!</div>
+                <div class="toast-message">Your message has been sent successfully.</div>
+            </div>
+        </div>
+        <button class="toast-close" onclick="hideToast()">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
-  </body>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
 </html>

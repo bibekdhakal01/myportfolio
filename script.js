@@ -73,10 +73,27 @@ async function fetchGitHubRepos() {
             projectData = projects;
             // Update the carousel after fetching
             updateCarouselWithNewProjects();
+        } else {
+            // No projects found, keep default placeholder
+            console.log('No public repositories found, using default projects');
         }
     } catch (error) {
         console.error('Error fetching GitHub repositories:', error);
-        // Keep the default loading message if fetch fails
+        // On error, keep the default placeholder project
+        // This provides a better fallback than showing a loading message indefinitely
+        projectData = [
+            {
+                id: 1,
+                title: "GitHub Projects",
+                description: "Visit my GitHub profile to see my latest projects and contributions. I'm continuously working on new and exciting projects!",
+                image: "/lovable-uploads/e9a8805c-d083-466a-8687-78145015de97.png",
+                tags: ["GitHub", "Open Source"],
+                github: `https://github.com/${GITHUB_USERNAME}`,
+                demo: "",
+                featured: true
+            }
+        ];
+        updateCarouselWithNewProjects();
     }
 }
 
@@ -115,43 +132,116 @@ function createProjectSlide(project, index) {
     slide.className = `project-slide ${index === 0 ? 'active' : ''}`;
     slide.setAttribute('data-project', index);
     
-    const featuredBadge = project.featured ? '<div class="featured-badge">Featured</div>' : '';
-    const demoButton = project.demo ? 
-        `<button class="btn btn-outline" onclick="window.open('${project.demo}', '_blank')">
-            <i class="fas fa-external-link-alt"></i> Live Demo
-        </button>` : '';
+    // Create project content container
+    const projectContent = document.createElement('div');
+    projectContent.className = 'project-content';
     
-    const statsInfo = project.stars !== undefined ? 
-        `<div class="project-stats">
-            <span><i class="fas fa-star"></i> ${project.stars}</span>
-            <span><i class="fas fa-code-branch"></i> ${project.forks}</span>
-        </div>` : '';
+    // Create project image container
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'project-image';
     
-    slide.innerHTML = `
-        <div class="project-content">
-            <div class="project-image">
-                <div class="project-glow"></div>
-                <img src="${project.image}" alt="${project.title}">
-                ${featuredBadge}
-            </div>
-            <div class="project-details">
-                <h3 class="project-title text-gradient-accent">${project.title}</h3>
-                <p class="project-description">${project.description}</p>
-                ${statsInfo}
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                </div>
-                <div class="project-buttons">
-                    <button class="btn btn-neon" onclick="window.open('${project.github}', '_blank')">
-                        <i class="fab fa-github"></i> View Code
-                    </button>
-                    ${demoButton}
-                </div>
-            </div>
-        </div>
-    `;
+    const projectGlow = document.createElement('div');
+    projectGlow.className = 'project-glow';
+    imageContainer.appendChild(projectGlow);
+    
+    const img = document.createElement('img');
+    img.src = project.image || '/lovable-uploads/e9a8805c-d083-466a-8687-78145015de97.png';
+    img.alt = escapeHtml(project.title);
+    imageContainer.appendChild(img);
+    
+    if (project.featured) {
+        const featuredBadge = document.createElement('div');
+        featuredBadge.className = 'featured-badge';
+        featuredBadge.textContent = 'Featured';
+        imageContainer.appendChild(featuredBadge);
+    }
+    
+    projectContent.appendChild(imageContainer);
+    
+    // Create project details container
+    const detailsContainer = document.createElement('div');
+    detailsContainer.className = 'project-details';
+    
+    const title = document.createElement('h3');
+    title.className = 'project-title text-gradient-accent';
+    title.textContent = project.title;
+    detailsContainer.appendChild(title);
+    
+    const description = document.createElement('p');
+    description.className = 'project-description';
+    description.textContent = project.description;
+    detailsContainer.appendChild(description);
+    
+    // Add stats if available
+    if (project.stars !== undefined) {
+        const statsDiv = document.createElement('div');
+        statsDiv.className = 'project-stats';
+        statsDiv.innerHTML = `
+            <span><i class="fas fa-star"></i> ${parseInt(project.stars) || 0}</span>
+            <span><i class="fas fa-code-branch"></i> ${parseInt(project.forks) || 0}</span>
+        `;
+        detailsContainer.appendChild(statsDiv);
+    }
+    
+    // Create tags container
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'project-tags';
+    project.tags.forEach(tag => {
+        const tagSpan = document.createElement('span');
+        tagSpan.className = 'tag';
+        tagSpan.textContent = escapeHtml(tag);
+        tagsContainer.appendChild(tagSpan);
+    });
+    detailsContainer.appendChild(tagsContainer);
+    
+    // Create buttons container
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.className = 'project-buttons';
+    
+    // GitHub button
+    const githubButton = document.createElement('button');
+    githubButton.className = 'btn btn-neon';
+    githubButton.innerHTML = '<i class="fab fa-github"></i> View Code';
+    githubButton.addEventListener('click', () => {
+        if (isValidUrl(project.github)) {
+            window.open(project.github, '_blank');
+        }
+    });
+    buttonsContainer.appendChild(githubButton);
+    
+    // Demo button (if available)
+    if (project.demo && isValidUrl(project.demo)) {
+        const demoButton = document.createElement('button');
+        demoButton.className = 'btn btn-outline';
+        demoButton.innerHTML = '<i class="fas fa-external-link-alt"></i> Live Demo';
+        demoButton.addEventListener('click', () => {
+            window.open(project.demo, '_blank');
+        });
+        buttonsContainer.appendChild(demoButton);
+    }
+    
+    detailsContainer.appendChild(buttonsContainer);
+    projectContent.appendChild(detailsContainer);
+    slide.appendChild(projectContent);
     
     return slide;
+}
+
+// Helper function to escape HTML
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Helper function to validate URLs
+function isValidUrl(url) {
+    try {
+        const parsedUrl = new URL(url);
+        return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';
+    } catch {
+        return false;
+    }
 }
 
 // Update carousel dots

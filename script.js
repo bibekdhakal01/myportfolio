@@ -176,10 +176,23 @@ function createProjectSlide(project, index) {
     if (project.stars !== undefined) {
         const statsDiv = document.createElement('div');
         statsDiv.className = 'project-stats';
-        statsDiv.innerHTML = `
-            <span><i class="fas fa-star"></i> ${parseInt(project.stars) || 0}</span>
-            <span><i class="fas fa-code-branch"></i> ${parseInt(project.forks) || 0}</span>
-        `;
+        
+        // Create star span
+        const starSpan = document.createElement('span');
+        const starIcon = document.createElement('i');
+        starIcon.className = 'fas fa-star';
+        starSpan.appendChild(starIcon);
+        starSpan.appendChild(document.createTextNode(' ' + (parseInt(project.stars) || 0)));
+        
+        // Create fork span
+        const forkSpan = document.createElement('span');
+        const forkIcon = document.createElement('i');
+        forkIcon.className = 'fas fa-code-branch';
+        forkSpan.appendChild(forkIcon);
+        forkSpan.appendChild(document.createTextNode(' ' + (parseInt(project.forks) || 0)));
+        
+        statsDiv.appendChild(starSpan);
+        statsDiv.appendChild(forkSpan);
         detailsContainer.appendChild(statsDiv);
     }
     
@@ -201,7 +214,10 @@ function createProjectSlide(project, index) {
     // GitHub button
     const githubButton = document.createElement('button');
     githubButton.className = 'btn btn-neon';
-    githubButton.innerHTML = '<i class="fab fa-github"></i> View Code';
+    const githubIcon = document.createElement('i');
+    githubIcon.className = 'fab fa-github';
+    githubButton.appendChild(githubIcon);
+    githubButton.appendChild(document.createTextNode(' View Code'));
     githubButton.addEventListener('click', () => {
         if (isValidUrl(project.github)) {
             window.open(project.github, '_blank');
@@ -213,7 +229,10 @@ function createProjectSlide(project, index) {
     if (project.demo && isValidUrl(project.demo)) {
         const demoButton = document.createElement('button');
         demoButton.className = 'btn btn-outline';
-        demoButton.innerHTML = '<i class="fas fa-external-link-alt"></i> Live Demo';
+        const demoIcon = document.createElement('i');
+        demoIcon.className = 'fas fa-external-link-alt';
+        demoButton.appendChild(demoIcon);
+        demoButton.appendChild(document.createTextNode(' Live Demo'));
         demoButton.addEventListener('click', () => {
             window.open(project.demo, '_blank');
         });
@@ -256,7 +275,7 @@ function updateCarouselDots() {
     projectData.forEach((_, index) => {
         const dot = document.createElement('div');
         dot.className = `dot ${index === 0 ? 'active' : ''}`;
-        dot.setAttribute('onclick', `goToProject(${index})`);
+        dot.addEventListener('click', () => goToProject(index));
         dotsContainer.appendChild(dot);
     });
 }

@@ -1,6 +1,6 @@
 // Global Variables
 let currentProject = 0;
-const totalProjects = 3;
+let totalProjects = 1; // Will be updated dynamically
 let isAnimating = false;
 let particles = [];
 let canvas, ctx;
@@ -15,39 +15,161 @@ const portfolioSettings = {
     carouselSpeed: parseInt(localStorage.getItem('carousel-speed')) || 5000
 };
 
+// GitHub Configuration
+const GITHUB_USERNAME = 'sulav3690';
+const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
+
 // Project Data (Dynamic Management)
-const projectData = [
+let projectData = [
     {
         id: 1,
-        title: "Food Delivery System (Foodie Fly)",
-        description: "A comprehensive web application focused on delivering food based on user's demand as soon as possible. Features include real-time ordering, payment integration, and delivery tracking.",
+        title: "Loading Projects...",
+        description: "Fetching repositories from GitHub. Please wait...",
         image: "/lovable-uploads/e9a8805c-d083-466a-8687-78145015de97.png",
-        tags: ["HTML", "PHP", "CSS", "JavaScript", "SQL"],
-        github: "https://github.com/BibekDkl/Hamro_Hotel",
-        demo: "",
-        featured: true
-    },
-    {
-        id: 2,
-        title: "Donation Management System",
-        description: "A console-based donation management system which helps to track and update donation data efficiently. Built with modern C++ practices and data structures.",
-        image: "/lovable-uploads/6027eded-575a-472a-9a03-90e5b7466f70.png",
-        tags: ["C++", "Data Structures", "OOP"],
-        github: "https://github.com/BibekDkl/Donation-Management-System",
-        demo: "",
-        featured: false
-    },
-    {
-        id: 3,
-        title: "Virtual Mouse with CNN",
-        description: "An innovative virtual mouse application that allows users to control their device using computer vision and CNN. Features gesture recognition and real-time tracking.",
-        image: "/lovable-uploads/3329e892-7a07-4334-a59c-a469e12e7dd2.png",
-        tags: ["Python", "CNN", "OpenCV", "Machine Learning"],
-        github: "https://github.com/BibekDkl/Virtual_mouse_using_CNN",
+        tags: ["Loading"],
+        github: `https://github.com/${GITHUB_USERNAME}`,
         demo: "",
         featured: true
     }
 ];
+
+// Fetch GitHub Repositories
+async function fetchGitHubRepos() {
+    try {
+        const response = await fetch(GITHUB_API_URL + '?sort=updated&per_page=10');
+        if (!response.ok) {
+            throw new Error('Failed to fetch repositories');
+        }
+        const repos = await response.json();
+        
+        // Filter out forked repos and convert to project format
+        const projects = repos
+            .filter(repo => !repo.fork && !repo.private)
+            .slice(0, 6) // Limit to 6 projects
+            .map((repo, index) => {
+                // Extract language tags
+                const tags = [];
+                if (repo.language) tags.push(repo.language);
+                if (repo.topics && repo.topics.length > 0) {
+                    tags.push(...repo.topics.slice(0, 3));
+                }
+                if (tags.length === 0) tags.push('GitHub');
+                
+                return {
+                    id: index + 1,
+                    title: repo.name.replace(/-|_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                    description: repo.description || 'A GitHub repository showcasing development skills and project implementation.',
+                    image: "/lovable-uploads/e9a8805c-d083-466a-8687-78145015de97.png",
+                    tags: tags.slice(0, 5),
+                    github: repo.html_url,
+                    demo: repo.homepage || "",
+                    featured: index < 2,
+                    stars: repo.stargazers_count,
+                    forks: repo.forks_count
+                };
+            });
+        
+        if (projects.length > 0) {
+            projectData = projects;
+            // Update the carousel after fetching
+            updateCarouselWithNewProjects();
+        }
+    } catch (error) {
+        console.error('Error fetching GitHub repositories:', error);
+        // Keep the default loading message if fetch fails
+    }
+}
+
+// Update carousel with fetched projects
+function updateCarouselWithNewProjects() {
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (!carouselContainer) return;
+    
+    // Update total projects count
+    totalProjects = projectData.length;
+    
+    // Clear existing slides
+    const existingSlides = carouselContainer.querySelectorAll('.project-slide');
+    existingSlides.forEach(slide => slide.remove());
+    
+    // Create new slides from fetched data
+    projectData.forEach((project, index) => {
+        const slide = createProjectSlide(project, index);
+        carouselContainer.appendChild(slide);
+    });
+    
+    // Update dots
+    updateCarouselDots();
+    
+    // Reset current project to 0
+    currentProject = 0;
+    
+    // Update display
+    updateProjectDisplay();
+    updateProjectCounter();
+}
+
+// Create a project slide element
+function createProjectSlide(project, index) {
+    const slide = document.createElement('div');
+    slide.className = `project-slide ${index === 0 ? 'active' : ''}`;
+    slide.setAttribute('data-project', index);
+    
+    const featuredBadge = project.featured ? '<div class="featured-badge">Featured</div>' : '';
+    const demoButton = project.demo ? 
+        `<button class="btn btn-outline" onclick="window.open('${project.demo}', '_blank')">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+        </button>` : '';
+    
+    const statsInfo = project.stars !== undefined ? 
+        `<div class="project-stats">
+            <span><i class="fas fa-star"></i> ${project.stars}</span>
+            <span><i class="fas fa-code-branch"></i> ${project.forks}</span>
+        </div>` : '';
+    
+    slide.innerHTML = `
+        <div class="project-content">
+            <div class="project-image">
+                <div class="project-glow"></div>
+                <img src="${project.image}" alt="${project.title}">
+                ${featuredBadge}
+            </div>
+            <div class="project-details">
+                <h3 class="project-title text-gradient-accent">${project.title}</h3>
+                <p class="project-description">${project.description}</p>
+                ${statsInfo}
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="project-buttons">
+                    <button class="btn btn-neon" onclick="window.open('${project.github}', '_blank')">
+                        <i class="fab fa-github"></i> View Code
+                    </button>
+                    ${demoButton}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    return slide;
+}
+
+// Update carousel dots
+function updateCarouselDots() {
+    const dotsContainer = document.querySelector('.carousel-dots');
+    if (!dotsContainer) return;
+    
+    // Clear existing dots
+    dotsContainer.innerHTML = '';
+    
+    // Create new dots
+    projectData.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.setAttribute('onclick', `goToProject(${index})`);
+        dotsContainer.appendChild(dot);
+    });
+}
 
 // Theme Colors
 const themes = {
@@ -82,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSettings();
     initParticles();
     initNavigation();
+    fetchGitHubRepos(); // Fetch GitHub repositories dynamically
     initProjectCarousel();
     initSkillAnimations();
     initScrollAnimations();
@@ -1057,7 +1180,7 @@ console.log(`
 ║  ════════════════════════════════════════════════════════════ ║
 ║  Built with: HTML5, CSS3, Vanilla JavaScript                ║
 ║  Features: Dynamic Themes, Settings Panel, Touch Support    ║
-║  Author: Bibek Dhakal                                        ║
+║  Author: Sulav Sharma                                        ║
 ║  Version: 2.0.0                                              ║
 ╚══════════════════════════════════════════════════════════════╝
 
@@ -1226,7 +1349,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Console welcome message
 console.log(
-    '%c🚀 Welcome to Bibek\'s Portfolio! %c\n' +
+    '%c🚀 Welcome to Sulav Sharma\'s Portfolio! %c\n' +
     'Built with modern web technologies\n' +
     'Feel free to explore the code and reach out if you have any questions!',
     'color: #3b82f6; font-size: 16px; font-weight: bold;',

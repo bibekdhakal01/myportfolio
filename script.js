@@ -36,7 +36,7 @@ let projectData = [
 // Fetch GitHub Repositories
 async function fetchGitHubRepos() {
     try {
-        const response = await fetch(GITHUB_API_URL + '?sort=updated&per_page=10');
+        const response = await fetch(GITHUB_API_URL + '?sort=updated&per_page=6');
         if (!response.ok) {
             throw new Error('Failed to fetch repositories');
         }
@@ -57,7 +57,7 @@ async function fetchGitHubRepos() {
                 
                 return {
                     id: index + 1,
-                    title: repo.name.replace(/-|_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                    title: formatRepoTitle(repo.name),
                     description: repo.description || 'A GitHub repository showcasing development skills and project implementation.',
                     image: "/lovable-uploads/e9a8805c-d083-466a-8687-78145015de97.png",
                     tags: tags.slice(0, 5),
@@ -95,6 +95,13 @@ async function fetchGitHubRepos() {
         ];
         updateCarouselWithNewProjects();
     }
+}
+
+// Helper function to format repository names as titles
+function formatRepoTitle(name) {
+    return name
+        .replace(/-|_/g, ' ')
+        .replace(/\b\w/g, l => l.toUpperCase());
 }
 
 // Update carousel with fetched projects
@@ -182,14 +189,14 @@ function createProjectSlide(project, index) {
         const starIcon = document.createElement('i');
         starIcon.className = 'fas fa-star';
         starSpan.appendChild(starIcon);
-        starSpan.appendChild(document.createTextNode(' ' + (parseInt(project.stars) || 0)));
+        starSpan.appendChild(document.createTextNode(' ' + (Number(project.stars) || 0)));
         
         // Create fork span
         const forkSpan = document.createElement('span');
         const forkIcon = document.createElement('i');
         forkIcon.className = 'fas fa-code-branch';
         forkSpan.appendChild(forkIcon);
-        forkSpan.appendChild(document.createTextNode(' ' + (parseInt(project.forks) || 0)));
+        forkSpan.appendChild(document.createTextNode(' ' + (Number(project.forks) || 0)));
         
         statsDiv.appendChild(starSpan);
         statsDiv.appendChild(forkSpan);
